@@ -3,17 +3,13 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryEl = document.getElementById('gallery');
 const loaderBackdrop = document.getElementById('loader');
+const loadMoreBtn = document.getElementById('load-more');
 
-// Ініціалізація SimpleLightbox один раз
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 200
 });
 
-/**
- * Додає картки в галерею та оновлює Lightbox.
- * @param {Array} images
- */
 export function createGallery(images) {
   const markup = images
     .map(
@@ -41,28 +37,30 @@ export function createGallery(images) {
     )
     .join('');
 
-  // ОДНА операція в DOM
   galleryEl.insertAdjacentHTML('beforeend', markup);
-
-  // Оновити lightbox
   lightbox.refresh();
 }
 
-/** Очищає галерею. */
 export function clearGallery() {
   galleryEl.innerHTML = '';
 }
 
-/** Показати лоадер. */
 export function showLoader() {
   loaderBackdrop.classList.add('is-visible');
   loaderBackdrop.setAttribute('aria-hidden', 'false');
 }
 
-/** Сховати лоадер. */
 export function hideLoader() {
   loaderBackdrop.classList.remove('is-visible');
   loaderBackdrop.setAttribute('aria-hidden', 'true');
+}
+
+export function showLoadMoreButton() {
+  loadMoreBtn.classList.remove('is-hidden');
+}
+
+export function hideLoadMoreButton() {
+  loadMoreBtn.classList.add('is-hidden');
 }
 
 function escapeHtml(str = '') {
