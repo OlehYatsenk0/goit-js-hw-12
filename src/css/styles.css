@@ -183,3 +183,7 @@ ul {
     transform: rotate(360deg);
   }
 }
+
+.is-hidden {
+  display: none !important;
+}
